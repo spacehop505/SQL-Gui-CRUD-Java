@@ -1,1 +1,3 @@
 # SQL-Gui-CRUD-Java
+
+CREATE TABLE my_data ( my_id INT PRIMARY KEY AUTO_INCREMENT, my_name VARCHAR(40) NOT NULL, my_price DOUBLE NOT NULL, my_quantity INTEGER NOT NULL );
