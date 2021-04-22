@@ -49,7 +49,7 @@ public class Gui {
 		defaultTableModel.addColumn("ID");
 		defaultTableModel.addColumn("Name");
 		defaultTableModel.addColumn("Price");
-		defaultTableModel.addColumn("Quantiy");
+		defaultTableModel.addColumn("Quantity");
 		table = new JTable(defaultTableModel);
 
 		scrollPane.setViewportView(table);
