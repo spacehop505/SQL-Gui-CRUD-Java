@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import model.Data;
+
 public class MySql {
 	private Connection connect = null;
 	private Statement statement = null;

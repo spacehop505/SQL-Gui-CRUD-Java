@@ -2,6 +2,7 @@ package run;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import msql.Data;
+import model.Data;
 import msql.MySql;
 
 public class Gui {
@@ -35,6 +36,7 @@ public class Gui {
 	private JLabel warning2;
 	private JLabel warning4;
 	private JTextField id2;
+	private JLabel warning3;
 
 	public Gui() {
 		frame = new JFrame();
@@ -55,6 +57,7 @@ public class Gui {
 		scrollPane.setViewportView(table);
 
 		JButton createBtn = new JButton("Create");
+		createBtn.setBackground(SystemColor.inactiveCaption);
 		createBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		createBtn.addActionListener(new ActionListener() {
 			@Override
@@ -114,20 +117,21 @@ public class Gui {
 		lblQuantity1.setBounds(20, 180, 80, 30);
 		frame.getContentPane().add(lblQuantity1);
 
-		JLabel lblCreateFruit = new JLabel("Create");
-		lblCreateFruit.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel lblCreateFruit = new JLabel("SQL INSERT");
+		lblCreateFruit.setForeground(Color.BLUE);
+		lblCreateFruit.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblCreateFruit.setBounds(20, 70, 180, 30);
 		frame.getContentPane().add(lblCreateFruit);
 
-		JLabel lblSelectAFruit = new JLabel("Data");
+		JLabel lblSelectAFruit = new JLabel("SQL Project");
 		lblSelectAFruit.setForeground(new Color(0, 0, 0));
 		lblSelectAFruit.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblSelectAFruit.setBounds(393, 70, 62, 30);
+		lblSelectAFruit.setBounds(355, 70, 146, 30);
 		frame.getContentPane().add(lblSelectAFruit);
 
-		JLabel lblDeleteFruit = new JLabel("Delete");
-		lblDeleteFruit.setForeground(new Color(0, 0, 0));
-		lblDeleteFruit.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel lblDeleteFruit = new JLabel("SQL DELETE");
+		lblDeleteFruit.setForeground(Color.BLUE);
+		lblDeleteFruit.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblDeleteFruit.setBounds(659, 70, 180, 30);
 		frame.getContentPane().add(lblDeleteFruit);
 
@@ -142,10 +146,12 @@ public class Gui {
 		frame.getContentPane().add(id3);
 
 		JButton deleteBtn = new JButton("Delete");
+		deleteBtn.setBackground(SystemColor.inactiveCaption);
 		deleteBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		deleteBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				warning3.setText("");
 				try {
 					int id = Integer.parseInt(id3.getText());
 
@@ -157,9 +163,9 @@ public class Gui {
 					id3.setText("");
 					table();
 				} catch (NumberFormatException e1) {
-					warning1.setText("NumberFormatException");
+					warning3.setText("NumberFormatException");
 				} catch (SQLException e1) {
-					warning1.setText("SQLException");
+					warning3.setText("SQLException");
 				}
 			}
 		});
@@ -167,11 +173,13 @@ public class Gui {
 		frame.getContentPane().add(deleteBtn);
 
 		JButton searchBtn = new JButton("Search");
+		searchBtn.setBackground(SystemColor.inactiveCaption);
 		searchBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				defaultTableModel.setRowCount(0);
+				warning4.setText("");
 				try {
 					int id = Integer.parseInt(id4.getText());
 					MySql sqlObject = new MySql();
@@ -191,7 +199,7 @@ public class Gui {
 				} catch (SQLException e1) {
 					System.err.println("Error SQLException\n" + e1.toString());
 				} catch (NumberFormatException e1) {
-					warning1.setText("NumberFormatException");
+					warning4.setText("NumberFormatException");
 				}
 
 			}
@@ -209,15 +217,15 @@ public class Gui {
 		lblname1_1_1.setBounds(659, 310, 80, 30);
 		frame.getContentPane().add(lblname1_1_1);
 
-		JLabel lblSearchSold = new JLabel("Search");
-		lblSearchSold.setForeground(new Color(0, 0, 0));
-		lblSearchSold.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel lblSearchSold = new JLabel("SQL SELECT");
+		lblSearchSold.setForeground(Color.BLUE);
+		lblSearchSold.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblSearchSold.setBounds(659, 280, 180, 30);
 		frame.getContentPane().add(lblSearchSold);
 
-		JLabel lblUpdateFruit = new JLabel("Update");
-		lblUpdateFruit.setForeground(new Color(0, 0, 0));
-		lblUpdateFruit.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel lblUpdateFruit = new JLabel("SQL UPDATE");
+		lblUpdateFruit.setForeground(Color.BLUE);
+		lblUpdateFruit.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblUpdateFruit.setBounds(20, 310, 180, 30);
 		frame.getContentPane().add(lblUpdateFruit);
 
@@ -252,6 +260,7 @@ public class Gui {
 		frame.getContentPane().add(quantity2);
 
 		JButton updateBtn = new JButton("Update");
+		updateBtn.setBackground(SystemColor.inactiveCaption);
 		updateBtn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		updateBtn.addActionListener(new ActionListener() {
 			@Override
@@ -294,7 +303,7 @@ public class Gui {
 		warning2.setBounds(20, 530, 180, 30);
 		frame.getContentPane().add(warning2);
 
-		JLabel warning3 = new JLabel("");
+		warning3 = new JLabel("");
 		warning3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		warning3.setBounds(659, 170, 180, 30);
 		frame.getContentPane().add(warning3);
@@ -305,6 +314,7 @@ public class Gui {
 		frame.getContentPane().add(warning4);
 
 		JButton btnNewButton_2_1 = new JButton("Refresh");
+		btnNewButton_2_1.setBackground(SystemColor.inactiveCaption);
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
